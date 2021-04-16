@@ -1,0 +1,290 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>修改信息</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+    <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            height: 100%;
+            font-family: sans-serif;
+        }
+
+        /* ------------------------------------ */
+        a {
+            margin: 0px;
+            transition: all 0.4s;
+            -webkit-transition: all 0.4s;
+            -o-transition: all 0.4s;
+            -moz-transition: all 0.4s;
+        }
+
+        a:focus {
+            outline: none !important;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        /* ------------------------------------ */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 0px;
+        }
+
+        p {
+            margin: 0px;
+        }
+
+        ul,
+        li {
+            margin: 0px;
+            list-style-type: none;
+        }
+
+
+        /* ------------------------------------ */
+        input {
+            display: block;
+            outline: none;
+            /* border: none !important; */
+        }
+
+        textarea {
+            display: block;
+            outline: none;
+        }
+
+        /* textarea:focus,
+        input:focus {
+            border-color: transparent !important;
+        } */
+
+        /* ------------------------------------ */
+        button {
+            outline: none !important;
+            border: none;
+            background: transparent;
+        }
+
+        button:hover {
+            cursor: pointer;
+        }
+
+        iframe {
+            border: none !important;
+        }
+
+
+
+        .limiter {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .container-table100 {
+            width: 100%;
+            min-height: 100vh;
+            background: #c850c0;
+            background: -webkit-linear-gradient(45deg, #4158d0, #c850c0);
+            background: -o-linear-gradient(45deg, #4158d0, #c850c0);
+            background: -moz-linear-gradient(45deg, #4158d0, #c850c0);
+            background: linear-gradient(45deg, #4158d0, #c850c0);
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 33px 30px;
+        }
+
+        .wrap-table100 {
+            width: 1170px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .card {
+                padding: 0 15px !important;
+            }
+
+            .wrap-table100 {
+                width: 100%;
+            }
+
+            .container {
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container-table100 {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+
+        .form-group.input-material {
+            position: relative;
+            margin-top: 50px;
+            margin-bottom: 25px;
+        }
+
+        .form-group.input-material label {
+            color: #b1bbc4;
+            font-size: 18px;
+            font-weight: normal;
+            position: absolute;
+            pointer-events: none;
+            left: 5px;
+            top: 7px;
+            transition: 0.1s ease all;
+            -moz-transition: 0.1s ease all;
+            -webkit-transition: 0.1s ease all;
+        }
+
+        .form-group.input-material .form-control {
+            border: none;
+            border-bottom: 2px solid #ced4da;
+            border-radius: 0px;
+            background: transparent;
+            padding-left: 5px;
+            box-shadow: none;
+            /* required fields */
+            /* active state */
+            /* invalid state */
+            padding: 20px 12px;
+        }
+
+        .card {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, .125);
+            border-radius: .25rem;
+            padding: 0 60px;
+        }
+
+        .form-group.input-material .form-control:required~label::after {
+            content: '*';
+            color: #dc3545;
+            padding-left: 2px;
+            font-size: 0.8em;
+        }
+
+        .form-group.input-material .form-control:focus,
+        .form-group.input-material .form-control[value]:not([value=""]) {
+            border-bottom-color: #31b0d5;
+            color: #000;
+        }
+
+        .form-group.input-material .form-control:focus~label,
+        .form-group.input-material .form-control[value]:not([value=""])~label {
+            top: -25px;
+            font-size: 16px;
+            color: #31b0d5;
+            font-weight: 500;
+        }
+
+        .form-group.input-material .form-control:focus.invalid,
+        .form-group.input-material .form-control.invalid,
+        .form-group.input-material .form-control:focus.parsley-error,
+        .form-group.input-material .form-control[value]:not([value=""]).parsley-error {
+            border-bottom-color: #dc3545;
+        }
+
+        .form-group.input-material .form-control:focus.invalid~label,
+        .form-group.input-material .form-control.invalid~label,
+        .form-group.input-material .form-control:focus.parsley-error~label,
+        .form-group.input-material .form-control[value]:not([value=""]).parsley-error~label {
+            color: #dc3545;
+        }
+
+        .form-group.input-material .parsley-errors-list {
+            color: #dc3545;
+            list-style: none;
+            font-size: 0.7em;
+            padding-left: 5px;
+        }
+
+        .increase_btn {
+            padding: 0 30px;
+            font-size: 22px;
+        }
+
+        .center_btn {
+            padding-bottom: 30px;
+        }
+
+        .logo h2 {
+            text-align: center;
+            margin-top: -30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+                <div class="logo">
+                    <h2>
+                        <img src="{% static 'gangweifx/img/logo.png' %}" alt="江西师胜携程教育" style="width: 260px;">
+                    </h2>
+                </div>
+                <div class="container">
+                    <div class="col-lg-8 card m-5 p-5 col-md-offset-2">
+                        <form id="contact-form" method="post" action="{% url 'Special_doedit' student.pk %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="referer" value="{{ referer }}">
+                            <div class="form-group input-material">
+                                <input type="text" class="form-control" maxlength="5" id="name-field" name="name" required="" value="{{ student.name }}">
+                                <label for="name-field">名字</label>
+                            </div>
+                            <div class="form-group input-material">
+                                <input type="text" maxlength="11" class="form-control" id="email-field" name="phone" required="" value="{{ student.phone }}">
+                                <label for="email-field">电话</label>
+                            </div>
+                            <div class="form-group input-material">
+                                <input type="text" class="form-control" id="textarea-field" name="remarks" required="" value="{{ student.remarks }}">
+                                <label for="textarea-field">备注</label>
+                            </div>
+                            <div class="text-center center_btn">
+                                    <button type="submit" class="btn btn-info increase_btn">修改</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

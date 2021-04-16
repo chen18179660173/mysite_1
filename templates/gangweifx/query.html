@@ -1,0 +1,80 @@
+{% load staticfiles %}
+<!-- 声明文档类型 是html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<!--设置编码格式为：UTF-8-->
+	<meta charset="UTF-8">
+	<!-- IE=edge: 告诉IE使用最新的引擎渲染网页，chrome=1: 则可以激活charome Frame -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<!--页面标题-->
+	<title>欢迎回来! {{username}}</title>
+	<!-- 设置移动端视口 -->
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"> -->
+    <meta name="viewport"  content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+	<!-- 设置让搜索引擎获取网页的描述内容 -->
+	<meta name="description" content="">
+	<!-- 设置让搜索引擎获取网页的关键字 -->
+	<meta name="keywords" contenr="">
+	<!-- 更改页面icon图标 -->
+	<link rel="shortcut icon" type="images/x-icon" href="">
+	<!-- 链接css外部样式 -->
+	<link rel="stylesheet" type="text/css" href="{% static '/gangweifx/css/index_style.css' %}">
+	<!--链接js外部样式-->
+	<script type="text/javascript" src="{% static '/gangweifx/js/index_script.js' %}"></script>
+	<!--css内部样式标签-->
+	<style type="text/css"></style>
+</head>
+<body>
+	<div class="content">
+        <div class="header">
+            <div class="h_title">
+				<!-- <a href="#"></a> -->
+				<div class="title">
+					<h1>江西省教招岗位情况查询</h1>
+				</div>
+			</div>
+		</div>
+		<div class="main">
+			<div class="main_icon">
+				<img src="{% static 'gangweifx/img/logo-hight.png' %}" alt="">
+			</div>
+			<p><a class="loginout" href="{% url 'loginOut' %}">退出</a></p>
+			<p class="name">欢迎回来! {{username}}</p>
+			<a href="{% url 'NationalQuery' %}" class="gb_inquire inquire_btn">国编</a>
+			<a href="{% url 'SpecialQuery' %}" class="tg_inquire inquire_btn">特岗</a>
+			{% if super == True %}
+				<a href="{% url 'StudentList' %}" class="tg_inquire inquire_btn">学生列表</a>
+			{% else %}
+				<span style="display: block;height: 30px"></span>
+			{% endif %}
+			<div class="share-box">
+				<a href="#" class="acquire">点击关注公众号(最新面试公告、笔试资料分享)</a><br>
+
+			</div>
+			<div class="popup-box" style="display: none;">
+				<div class="show">
+					<img src="{% static 'gangweifx/img/tencent_icon.jpg' %}"  class="my-chen">
+					<a href="javascript:;" class="close">
+						<img src="{% static 'gangweifx/img/error.png' %}" alt="点击关闭">
+					</a>
+				</div>
+			</div>
+		</div>
+    </div>
+</body>
+</html>
+<!-- js内部样式 -->
+<script type="text/javascript">
+	window.addEventListener('load', function() {
+		var acquire = document.querySelector('.acquire');
+		var popupBox = document.querySelector('.popup-box');
+		var close = document.querySelector('.close');
+		acquire.addEventListener('click', function() {
+			popupBox.style.display = 'block';
+		});
+		close.addEventListener('click', function() {
+			popupBox.style.display = 'none';
+		});
+	});
+</script>
